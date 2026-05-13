@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA">
+    android:background="#F5F7FA"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,20 +13,23 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NFC Reader Console"
             android:textStyle="bold"
             android:textSize="24sp"
-            android:textColor="#1F2937" />
+            android:textColor="#111827"
+            android:importantForAccessibility="yes" />
 
         <TextView
+            android:id="@+id/txtSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Simulación de activación y lectura de tag NFC"
             android:textSize="14sp"
-            android:textColor="#6B7280" />
+            android:textColor="#374151" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -44,15 +48,19 @@
                     android:id="@+id/btnEnableReader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Activar lector NFC" />
+                    android:minHeight="48dp"
+                    android:text="Activar lector NFC"
+                    android:contentDescription="Activa el lector NFC para comenzar la simulación" />
 
                 <Button
                     android:id="@+id/btnReadMockTag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:minHeight="48dp"
                     android:text="Leer tag NFC"
-                    android:enabled="false" />
+                    android:enabled="false"
+                    android:contentDescription="Lee un tag NFC simulado" />
 
                 <LinearLayout
                     android:id="@+id/loadingContainer"
@@ -61,19 +69,23 @@
                     android:layout_marginTop="16dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    android:accessibilityLiveRegion="polite">
 
                     <ProgressBar
                         android:layout_width="24dp"
-                        android:layout_height="24dp" />
+                        android:layout_height="24dp"
+                        android:contentDescription="Cargando lectura NFC" />
 
                     <TextView
+                        android:id="@+id/txtLoading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:text="Leyendo contenido del tag..."
-                        android:textColor="#374151"
-                        android:textSize="14sp" />
+                        android:textColor="#111827"
+                        android:textSize="14sp"
+                        android:accessibilityLiveRegion="polite" />
                 </LinearLayout>
 
                 <TextView
@@ -81,8 +93,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:textColor="#B91C1C"
-                    android:textStyle="bold" />
+                    android:textColor="#991B1B"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:accessibilityLiveRegion="assertive" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -118,6 +133,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
+                        android:clickable="false"
+                        android:importantForAccessibility="yes"
                         android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,6 +149,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
+                        android:clickable="false"
+                        android:importantForAccessibility="yes"
                         android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,6 +167,8 @@
                         android:minLines="3"
                         android:gravity="top"
                         android:focusable="false"
+                        android:clickable="false"
+                        android:importantForAccessibility="yes"
                         android:inputType="textMultiLine" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,6 +189,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
+                            android:clickable="false"
+                            android:importantForAccessibility="yes"
                             android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -186,6 +209,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
+                            android:clickable="false"
+                            android:importantForAccessibility="yes"
                             android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
@@ -207,6 +232,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
+                            android:clickable="false"
+                            android:importantForAccessibility="yes"
                             android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -225,6 +252,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
+                            android:clickable="false"
+                            android:importantForAccessibility="yes"
                             android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
@@ -242,10 +271,13 @@
                         android:minLines="2"
                         android:gravity="top"
                         android:focusable="false"
+                        android:clickable="false"
+                        android:importantForAccessibility="yes"
                         android:inputType="textMultiLine" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 </ScrollView>

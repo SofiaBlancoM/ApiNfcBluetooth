@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnEnableReader;
     private Button btnReadMockTag;
+
     private LinearLayout loadingContainer;
+
     private TextView txtError;
 
     private TextInputEditText etTagId;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         viewModel = DeviceModule.provideDeviceViewModel(this);
@@ -44,9 +47,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindViews() {
+
         btnEnableReader = findViewById(R.id.btnEnableReader);
         btnReadMockTag = findViewById(R.id.btnReadMockTag);
+
         loadingContainer = findViewById(R.id.loadingContainer);
+
         txtError = findViewById(R.id.txtError);
 
         etTagId = findViewById(R.id.etTagId);
@@ -60,44 +66,90 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
+
         btnEnableReader.setOnClickListener(v -> {
+
             viewModel.enableNfcReader();
+
+            announceAccessibility("Lector NFC activado");
+
             render();
         });
 
         btnReadMockTag.setOnClickListener(v ->
-                viewModel.simulateNfcRead(this::render)
+                viewModel.simulateNfcRead(() -> {
+
+                    announceAccessibility("Lectura NFC completada");
+
+                    render();
+                })
         );
     }
 
     private void render() {
+
         DeviceUiState state = viewModel.getUiState();
 
-        btnReadMockTag.setEnabled(state.isNfcReadingEnabled() && !state.isLoading());
-        btnEnableReader.setEnabled(!state.isLoading());
+        boolean loading = state.isLoading();
 
-        loadingContainer.setVisibility(state.isLoading() ? View.VISIBLE : View.GONE);
+        btnReadMockTag.setEnabled(
+                state.isNfcReadingEnabled() && !loading
+        );
+
+        btnEnableReader.setEnabled(!loading);
+
+        loadingContainer.setVisibility(
+                loading ? View.VISIBLE : View.GONE
+        );
+
+        updateAccessibilityDescriptions(state);
 
         String error = state.getErrorMessage();
-        txtError.setText(error != null ? error : "");
+
+        if (error != null && !error.isEmpty()) {
+
+            txtError.setText("Error: " + error);
+
+            announceAccessibility("Error detectado. " + error);
+
+        } else {
+
+            txtError.setText("");
+        }
 
         NfcTagData tagData = state.getNfcTagData();
+
         if (tagData == null) {
+
             clearForm();
             return;
         }
 
         etTagId.setText(tagData.getId());
+
         etTechnology.setText(tagData.getTechnology());
+
         etPayload.setText(tagData.getPayload());
+
         etStatus.setText(tagData.getStatus());
-        etNdef.setText(tagData.isNdefCompatible() ? "Sí" : "No");
-        etSize.setText(tagData.getEstimatedSizeBytes() + " bytes");
+
+        etNdef.setText(
+                tagData.isNdefCompatible()
+                        ? "Sí"
+                        : "No"
+        );
+
+        etSize.setText(
+                tagData.getEstimatedSizeBytes() + " bytes"
+        );
+
         etReadAt.setText(tagData.getReadAt());
+
         etNotes.setText(tagData.getNotes());
     }
 
     private void clearForm() {
+
         etTagId.setText("");
         etTechnology.setText("");
         etPayload.setText("");
@@ -106,5 +158,28 @@ public class MainActivity extends AppCompatActivity {
         etSize.setText("");
         etReadAt.setText("");
         etNotes.setText("");
+    }
+
+    private void announceAccessibility(String message) {
+
+        View rootView = findViewById(android.R.id.content);
+
+        rootView.announceForAccessibility(message);
+    }
+
+    private void updateAccessibilityDescriptions(DeviceUiState state) {
+
+        if (state.isNfcReadingEnabled()) {
+
+            btnReadMockTag.setContentDescription(
+                    "Leer tag NFC"
+            );
+
+        } else {
+
+            btnReadMockTag.setContentDescription(
+                    "Debe activar el lector NFC antes de leer un tag"
+            );
+        }
     }
 }

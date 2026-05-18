@@ -1,3 +1,36 @@
 <resources>
-    <string name="app_name">ApiNfcBluetooth</string>
+    <string name="app_name">NFC Reader</string>
+    <string name="enable_nfc_first">Activar lector NFC primero</string>
+    <string name="read_tag_nfc">Leer tag NFC</string>
+    <string name="disable_accessibility">Desactivar accesibilidad</string>
+    <string name="enable_accessibility">Activar accesibilidad</string>
+    <string name="nfc_reader_console">NFC reader console</string>
+    <string name="simulation_nfc">Simulación de activación y lectura de tag NFC</string>
+    <string name="enable_accessibility_mode">Activar modo accesibilidad</string>
+    <string name="enable_nfc_reader">Activar lector NFC</string>
+    <string name="reading_tag">Leyendo contenido del tag...</string>
+    <string name="lecture_result">Resultado de lectura</string>
+    <string name="tag_id">Tag ID</string>
+    <string name="technology">Tecnología</string>
+    <string name="payload">Payload</string>
+    <string name="state">Estado</string>
+    <string name="ndef_compatible">NDEF compatible</string>
+    <string name="nfc_reader_enabled">Lector NFC activado</string>
+    <string name="accessibility_mode">Modo accesibilidad</string>
+    <string name="enabled">Activado</string>
+    <string name="disabled">Desactivado</string>
+    <string name="cannot_read_tag">No se puede leer el tag. Activa primero el lector NFC</string>
+    <string name="reading_complete">Lectura NFC completada</string>
+    <string name="nfc_reader_button">Botón para leer tag NFC</string>
+    <string name="button_disabled">Botón deshabilitado. Activa primero el lector NFC</string>
+    <string name="error">Error: </string>
+    <string name="error_detected">Error detectado: </string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="nfc_id">Identificador del tag NFC</string>
+    <string name="nfc_technology">Tecnología del tag NFC</string>
+    <string name="nfc_content">Contenido del tag NFC</string>
+    <string name="nfc_state">Estado del tag NFC</string>
+    <string name="ndef_compatibility">Compatibilidad NDEF</string>
+
 </resources>

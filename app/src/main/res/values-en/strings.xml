@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NFC Reader</string>
+    <string name="enable_nfc_first">Enable NFC reader first</string>
+    <string name="read_tag_nfc">Read NFC tag</string>
+    <string name="disable_accessibility">Disable accessibility</string>
+    <string name="enable_accessibility">Enable accessibility</string>
+    <string name="nfc_reader_console">NFC reader console</string>
+    <string name="simulation_nfc">Activation simulation and NFC tag reading</string>
+    <string name="enable_accessibility_mode">Enable accessibility mode</string>
+    <string name="enable_nfc_reader">Enable NFC reader</string>
+    <string name="reading_tag">Reading tag content...</string>
+    <string name="lecture_result">Reading result</string>
+    <string name="tag_id">Tag ID</string>
+    <string name="technology">Technology</string>
+    <string name="payload">Payload</string>
+    <string name="state">State</string>
+    <string name="ndef_compatible">NDEF compatible</string>
+    <string name="nfc_reader_enabled">NFC reader enabled</string>
+    <string name="accessibility_mode">Accessibility mode</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="cannot_read_tag">Cannot read the tag. First enable the NFC reader</string>
+    <string name="reading_complete">NFC reading complete</string>
+    <string name="nfc_reader_button">NFC reader button</string>
+    <string name="button_disabled">Button disabled. First enable the NFC reader</string>
+    <string name="error">Error: </string>
+    <string name="error_detected">Error detected: </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="nfc_id">NFC tag id</string>
+    <string name="nfc_technology">NFC tag technology</string>
+    <string name="nfc_content">NFC tag content</string>
+    <string name="nfc_state">NFC tag state</string>
+    <string name="ndef_compatibility">NDEF compatibility</string>
+
+</resources>

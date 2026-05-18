@@ -16,20 +16,26 @@
             android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NFC Reader Console"
+            android:text="@string/nfc_reader_console"
             android:textStyle="bold"
             android:textSize="24sp"
-            android:textColor="#111827"
-            android:importantForAccessibility="yes" />
+            android:textColor="#1F2937" />
 
         <TextView
             android:id="@+id/txtSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Simulación de activación y lectura de tag NFC"
+            android:text="@string/simulation_nfc"
             android:textSize="14sp"
-            android:textColor="#374151" />
+            android:textColor="#6B7280" />
+
+        <Button
+            android:id="@+id/btnAccessibilityMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/enable_accessibility_mode" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -48,19 +54,16 @@
                     android:id="@+id/btnEnableReader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:text="Activar lector NFC"
-                    android:contentDescription="Activa el lector NFC para comenzar la simulación" />
+                    android:text="@string/enable_nfc_reader" />
 
                 <Button
                     android:id="@+id/btnReadMockTag"
+                    android:accessibilityTraversalAfter="@id/btnEnableReader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:minHeight="48dp"
-                    android:text="Leer tag NFC"
-                    android:enabled="false"
-                    android:contentDescription="Lee un tag NFC simulado" />
+                    android:text="@string/read_tag_nfc"
+                    android:enabled="false" />
 
                 <LinearLayout
                     android:id="@+id/loadingContainer"
@@ -69,23 +72,21 @@
                     android:layout_marginTop="16dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="gone"
-                    android:accessibilityLiveRegion="polite">
+                    android:visibility="gone">
 
                     <ProgressBar
+                        android:id="@+id/progressBar"
                         android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:contentDescription="Cargando lectura NFC" />
+                        android:layout_height="24dp" />
 
                     <TextView
                         android:id="@+id/txtLoading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:text="Leyendo contenido del tag..."
-                        android:textColor="#111827"
-                        android:textSize="14sp"
-                        android:accessibilityLiveRegion="polite" />
+                        android:text="@string/reading_tag"
+                        android:textColor="#374151"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <TextView
@@ -93,10 +94,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:textColor="#991B1B"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:accessibilityLiveRegion="assertive" />
+                    android:textColor="#B91C1C"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -117,7 +116,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resultado de lectura"
+                    android:text="@string/lecture_result"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="#111827" />
@@ -126,15 +125,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:hint="Tag ID">
+                    android:hint="@string/tag_id">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etTagId"
+                        android:accessibilityTraversalAfter="@id/btnReadMockTag"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
-                        android:clickable="false"
-                        android:importantForAccessibility="yes"
                         android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,15 +140,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:hint="Tecnología">
+                    android:hint="@string/technology">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etTechnology"
+                        android:accessibilityTraversalAfter="@id/etTagId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
-                        android:clickable="false"
-                        android:importantForAccessibility="yes"
                         android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,17 +155,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:hint="Payload">
+                    android:hint="@string/payload">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPayload"
+                        android:accessibilityTraversalAfter="@id/etTechnology"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:minLines="3"
                         android:gravity="top"
                         android:focusable="false"
-                        android:clickable="false"
-                        android:importantForAccessibility="yes"
                         android:inputType="textMultiLine" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -182,15 +178,13 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Estado">
+                        android:hint="@string/state">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etStatus"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
-                            android:clickable="false"
-                            android:importantForAccessibility="yes"
                             android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -202,79 +196,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="NDEF compatible">
+                        android:hint="@string/ndef_compatible">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etNdef"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
-                            android:clickable="false"
-                            android:importantForAccessibility="yes"
                             android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="Tamaño estimado">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etSize"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="false"
-                            android:clickable="false"
-                            android:importantForAccessibility="yes"
-                            android:inputType="none" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <Space
-                        android:layout_width="12dp"
-                        android:layout_height="wrap_content" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="Fecha lectura">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etReadAt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="false"
-                            android:clickable="false"
-                            android:importantForAccessibility="yes"
-                            android:inputType="none" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:hint="Observaciones">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etNotes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minLines="2"
-                        android:gravity="top"
-                        android:focusable="false"
-                        android:clickable="false"
-                        android:importantForAccessibility="yes"
-                        android:inputType="textMultiLine" />
-                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

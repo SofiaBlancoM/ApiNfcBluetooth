@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean accessibilityMode = false;
 
+    private TextView txtBluetoothStatus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         bindViews();
         setupListeners();
         render();
+        viewModel.broadcastInitialScreen();
     }
 
     private void bindViews() {
@@ -76,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         etPayload = findViewById(R.id.etPayload);
         etStatus = findViewById(R.id.etStatus);
         etNdef = findViewById(R.id.etNdef);
+
+        txtBluetoothStatus = findViewById(R.id.txtBluetoothStatus);
     }
 
     private void setupListeners() {
@@ -119,6 +124,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void render() {
+
+        if (viewModel.isAccessibilityClientConnected()) {
+
+            txtBluetoothStatus.setText(getString(R.string.device_connected));
+
+        } else {
+
+            txtBluetoothStatus.setText(getString(R.string.waiting_bluetooth_connection));
+        }
 
         DeviceUiState state = viewModel.getUiState();
 

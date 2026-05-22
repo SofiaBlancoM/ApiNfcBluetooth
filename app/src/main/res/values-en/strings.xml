@@ -33,5 +33,15 @@
     <string name="nfc_content">NFC tag content</string>
     <string name="nfc_state">NFC tag state</string>
     <string name="ndef_compatibility">NDEF compatibility</string>
+    <string name="device_connected">Accessible device connected</string>
+    <string name="waiting_bluetooth_connection">Waiting Bluetooth connection</string>
+    <string name="waiting_bluetooth_device">Waiting Bluetooth device...</string>
+    <string name="error_reading">Error while reading NFC </string>
+    <string name="nfc_not_supported">This device does not support NFC</string>
+    <string name="nfc_disabled">NFC is disabled</string>
+    <string name="nfc_screen">NFC Reader Console screen. </string>
+    <string name="accessibility_button">Enable accessibility button available. </string>
+    <string name="enable_button">Enable NFC reader button available. </string>
+    <string name="read_button">Read tag NFC button disabled.</string>
 
 </resources>

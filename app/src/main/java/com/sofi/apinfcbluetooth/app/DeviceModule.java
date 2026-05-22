@@ -7,12 +7,14 @@ import com.sofi.apinfcbluetooth.application.device.usecase.CheckBluetoothAvailab
 import com.sofi.apinfcbluetooth.application.device.usecase.CheckNfcAvailabilityUseCase;
 import com.sofi.apinfcbluetooth.application.device.usecase.GetBondedBluetoothDevicesUseCase;
 import com.sofi.apinfcbluetooth.application.device.usecase.ReadNfcTagUseCase;
+import com.sofi.apinfcbluetooth.domain.device.port.AccessibilityBroadcaster;
 import com.sofi.apinfcbluetooth.domain.device.port.BluetoothAvailabilityPort;
 import com.sofi.apinfcbluetooth.domain.device.port.BluetoothDeviceReader;
 import com.sofi.apinfcbluetooth.domain.device.port.NfcAvailabilityPort;
 import com.sofi.apinfcbluetooth.domain.device.port.NfcTagReader;
 import com.sofi.apinfcbluetooth.infrastructure.device.bluetooth.AndroidBluetoothAvailabilityAdapter;
 import com.sofi.apinfcbluetooth.infrastructure.device.bluetooth.AndroidBluetoothDeviceReader;
+import com.sofi.apinfcbluetooth.infrastructure.device.bluetooth.BluetoothAccessibilityServer;
 import com.sofi.apinfcbluetooth.infrastructure.device.nfc.AndroidNfcAvailabilityAdapter;
 import com.sofi.apinfcbluetooth.infrastructure.device.nfc.AndroidNfcTagReader;
 import com.sofi.apinfcbluetooth.infrastructure.device.nfc.MockNfcAvailabilityAdapter;
@@ -47,10 +49,16 @@ public class DeviceModule {
 
         DeviceErrorMapper errorMapper = new DeviceErrorMapper();
 
+        AccessibilityBroadcaster
+                accessibilityBroadcaster =
+                new BluetoothAccessibilityServer();
+
         return new DeviceViewModel(
+                context,
                 checkNfcAvailabilityUseCase,
                 readNfcTagUseCase,
-                errorMapper
+                errorMapper,
+                accessibilityBroadcaster
         );
     }
 }
